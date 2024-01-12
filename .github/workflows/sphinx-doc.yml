@@ -6,7 +6,6 @@ on:
 
 jobs:
   pages:
-    documentation_path: ./docs/source
     runs-on: ubuntu-20.04
     environment:
       name: github-pages
@@ -17,3 +16,5 @@ jobs:
     steps:
     - id: deployment
       uses: sphinx-notes/pages@v3
+      with:
+        documentation_path: ./docs/source
