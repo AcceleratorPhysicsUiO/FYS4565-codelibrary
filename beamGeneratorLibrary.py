@@ -31,21 +31,6 @@ def generateBeam(N:int, Ek0:float,\
     betaY, alphaY, epsgY
         TWISS parameters for the vertical   plane        [m,1,m]
     
-    Optional named parameters
-    -------------------------
-    sigmaEk
-        Relative kinetic energy                          [eV]
-        Defaults to 0.0
-    sigmaZ
-        Bunch length sigma                               [m]
-        Defaults to 0.0
-    x0,xp0,y0,yp0
-        Initial beam position in phase space (x,x',y,y') [m,1,m,1]
-        Defaults to 0.0
-    rng
-        An initialized random number generator "dice" from ``np.random.Generator``.
-        Defaults to ``np.random.default_rng(42)``
-
     Returns
     --------
     particleArray : np.ndarray with 6 rows and N columns.
@@ -60,10 +45,28 @@ def generateBeam(N:int, Ek0:float,\
 
         Here the numerical index is the particle index.
     
-    Example
-    -------
-    import beamGeneratorLibrary
-    B_gen = beamGeneratorLibrary.generateBeam(10000, 10.0e9, 173.2,0.0,8.58e-08 ,173.2,1.0,8.58e-08, sigmaEk=1e7, sigmaZ=5e-5, rng=np.random.default_rng())
+    Other parameters
+    ----------------
+    sigmaEk
+        Relative kinetic energy                          [eV]
+        Defaults to 0.0
+    sigmaZ
+        Bunch length sigma                               [m]
+        Defaults to 0.0
+    x0,xp0,y0,yp0
+        Initial beam position in phase space (x,x',y,y') [m,1,m,1]
+        Defaults to 0.0
+    rng
+        An initialized random number generator "dice" from ``np.random.Generator``.
+        Defaults to ``np.random.default_rng(42)``
+
+
+    Examples
+    --------
+
+    >>> import beamGeneratorLibrary
+    >>> B_gen = beamGeneratorLibrary.generateBeam(10000, 10.0e9, 173.2,0.0,8.58e-08 ,173.2,1.0,8.58e-08, sigmaEk=1e7, sigmaZ=5e-5, rng=np.random.default_rng())
+
     """
 
     if not quiet:
@@ -97,4 +100,5 @@ def loadBeamFile_csv(beamFileName):
     pass
 
 if __name__ == "__main__":
-    print ("Hello")
+    #Test the example
+    B_gen = beamGeneratorLibrary.generateBeam(10000, 10.0e9, 173.2,0.0,8.58e-08 ,173.2,1.0,8.58e-08, sigmaEk=1e7, sigmaZ=5e-5)
