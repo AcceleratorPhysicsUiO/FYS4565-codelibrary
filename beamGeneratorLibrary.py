@@ -8,12 +8,12 @@ beamGeneratorLibrary.py
 import numpy as np
 import matplotlib.pyplot as plt
 
-def generateBeam(N:int,\
+def generateBeam(N:int, Ek0:float,\
                  betaX:float,alphaX:float,epsgX:float,\
                  betaY:float,alphaY:float,epsgY:float,\
-                 sigmaE:float, sigmaZ:float,\
-                 E0:float, x0:float=0.0,xp0:float=0.0, y0=0.0,yp0=0.0,\
-                 rng=np.random.default_rng(42)) -> np.ndarray:
+                 sigmaEk:float, sigmaZ:float,\
+                 x0:float=0.0,xp0:float=0.0, y0=0.0,yp0=0.0,\
+                 rng=np.random.default_rng(42), quiet=False) -> np.ndarray:
     """
     Generate macro-particles with the given Twiss parameters [m,1,m] in 4D and momentum spread (RMS of relative to total momentum),
     producing an 6xN array of particle phase-space coordinates
@@ -22,17 +22,23 @@ def generateBeam(N:int,\
     ------------
     N
         Number of macro-particles to generate            [1]
+    Ek0
+        Average energy of generated particles [eV]
+        This is typically equal to the reference energy of the beam
+
     betaX, alphaX, epsgX
         TWISS parameters for the horizontal plane        [m,1,m]
     betaY, alphaY, epsgY
         TWISS parameters for the vertical   plane        [m,1,m]
-    sigmaPP
-        Relative energy spread deltaP/P                  [1]
+    
+    Optional named parameters
+    -------------------------
+    sigmaEk
+        Relative kinetic energy                          [eV]
+        Defaults to 0.0
     sigmaZ
         Bunch length sigma                               [m]
-    E0
-        Average energy of generated particles [eV]
-        This is typically equal to the reference energy of the beam
+        Defaults to 0.0
     x0,xp0,y0,yp0
         Initial beam position in phase space (x,x',y,y') [m,1,m,1]
         Defaults to 0.0
@@ -53,8 +59,19 @@ def generateBeam(N:int,\
              [E0  , E1  , E2  , ..., EN  ]]
 
         Here the numerical index is the particle index.
-
+    
+    Example
+    -------
+    import beamGeneratorLibrary
+    B_gen = beamGeneratorLibrary.generateBeam(10000, 10.0e9, 173.2,0.0,8.58e-08 ,173.2,1.0,8.58e-08, sigmaEk=1e7, sigmaZ=5e-5, rng=np.random.default_rng())
     """
+
+    if not quiet:
+        print (f"Generating N={N} macroparticles with Ek0={Ek0:e} [eV]")
+        print (f" betaX = {betaX} [m], alphaX = {alphaX}, epsgX = {epsgX:e} [m]")
+        print (f" betaY = {betaY} [m], alphaX = {alphaY}, epsgX = {epsgY:e} [m]")
+        print (f" sigmaEk = {sigmaEk:e} [eV], sigmaZ={sigmaZ:e} [m]")
+        print (f" x0 = {x0:e} [m], xp0 = {xp0:e} [rad], y0 = {y0:e} [m], yp0 = {yp0:e} [rad]")
 
     covX = epsgX*np.array([[betaX, -alphaX],[-alphaX, (1+alphaX**2)/betaX]])
     covY = epsgY*np.array([[betaY, -alphaY],[-alphaY, (1+alphaY**2)/betaY]])
@@ -62,12 +79,22 @@ def generateBeam(N:int,\
     partX = rng.multivariate_normal(mean=[x0,xp0], cov=covX, size=N).T
     partY = rng.multivariate_normal(mean=[y0,yp0], cov=covY, size=N).T
 
-    E = rng.normal(loc=E0, scale=sigmaE, size=N)
+    Ek = rng.normal(loc=Ek0, scale=sigmaEk, size=N)
     
     z = rng.normal(loc=0, scale=sigmaZ, size=N)
 
-    return np.vstack((partX, partY, z, E))
+    if not quiet:
+        print("Done!")
+    return np.vstack((partX, partY, z, Ek))
 
+def saveBeamFile_csv(beamFileName, partArray):
+    """
+    Saves the content of a beam array to a CSV file.
+    """
+    np.savetxt(fname=beamFileName, X=partArray.T, fmt='%25.18e', delimiter=', ', header='x[m], xp[1], y[m], yp[1], dZ[m], Ek[eV]')
+def loadBeamFile_csv(beamFileName):
+
+    pass
 
 if __name__ == "__main__":
     print ("Hello")
