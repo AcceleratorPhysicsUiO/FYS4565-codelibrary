@@ -2,11 +2,14 @@
 
 This folder contains several Python3 modules and Jupyter notebook examples.
 
-## Generating code documentation
+For documentation, please see: https://acceleratorphysicsuio.github.io/FYS4565-codelibrary/
 
-The code library is documented using Sphinx. This is contained in the `docs` subfolder.
+## Manually generating code documentation
 
-To update the docs, enter the `docs` folder and run e.g. `make html` or `make latex` or `make singlehtml`.
+The code library is documented using Sphinx. The configuration for this is contained in the `docs` subfolder.
+Note that the code documentation is automatically generated at every commit to the `main` branch and published to the above mentioned github pages website.
+
+To manually update the docs locally, enter the `docs` folder and run e.g. `make html` or `make latex` or `make singlehtml`.
 The updated documentation will appear in `docs/build/html` or `docs/build/latex` or `docs/build/singlehtml.
 The generate a PDF from LaTeX, please run `make` inside the `docs/build/latex`.
 
