@@ -1,4 +1,5 @@
 name: Deploy Sphinx documentation to Pages
+uses: sphinx-notes/pages@3.0
 
 on:
   push:
