@@ -6,6 +6,7 @@ on:
 
 jobs:
   pages:
+    documentation_path: ./docs/source
     runs-on: ubuntu-20.04
     environment:
       name: github-pages
