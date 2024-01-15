@@ -70,10 +70,10 @@ def generateBeam(N:int, Ek0:float,\
 
     >>> import beamGeneratorLibrary
     >>> B_gen = beamGeneratorLibrary.generateBeam(10000, 10.0e9, \
-                                                  173.2, 0.0, 8.58e-08, \
-                                                  173.2, 1.0, 8.58e-08, \
-                                                  sigmaEk=1e7, sigmaZ=5e-5, \
-                                                  rng=np.random.default_rng())
+    ...                                           173.2, 0.0, 8.58e-08, \
+    ...                                           173.2, 1.0, 8.58e-08, \
+    ...                                           sigmaEk=1e7, sigmaZ=5e-5, \
+    ...                                           rng=np.random.default_rng())
 
     """
 
