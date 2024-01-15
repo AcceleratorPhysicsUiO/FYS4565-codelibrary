@@ -5,8 +5,7 @@
 
 Introduction
 =============
-
-
+This page contains the documentation for the code library that we will use for FYS4565.
 
 Python modules
 ---------------
