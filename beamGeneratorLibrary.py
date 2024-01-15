@@ -98,19 +98,42 @@ def generateBeam(N:int, Ek0:float,\
         print("Done!")
     return np.vstack((partX, partY, z, Ek))
 
-def saveBeamFile_csv(beamFileName, partArray):
+def saveBeamFile_csv(beamFileName, partArray, quiet=False):
     """
     Saves the content of a beam array to a CSV file.
     """
+    if not (beamFileName.endswith('.csv') or beamFileName.endswith('.CSV')):
+        raise ValueError('BeamFileName should end with .csv or .CSV')
+    if not (type(partArray)==np.ndarray and partArray.ndim == 2):
+        raise TypeError(f'Expected partArray to be a numpy.ndarray object, got {type(partArray)}')
+    if partArray.shape[0] != 6:
+        raise TypeError(f'partArray should be a 6xN matrix, but the number of rows was {partArray.shape[0]}')
+
+    if not quiet:
+        print(f"Saving N={partArray.shape[1]} to file '{beamFileName}'...")
+
     np.savetxt(fname=beamFileName, X=partArray.T, fmt='%25.18e', delimiter=', ', header='x[m], xp[1], y[m], yp[1], dZ[m], Ek[eV]')
 
-def loadBeamFile_csv(beamFileName):
+    if not quiet:
+        print('... done!')
+
+def loadBeamFile_csv(beamFileName, quiet=False):
     """
     Loads and returns a beam array from a CSV file
 
     """
+    if not (beamFileName.endswith('.csv') or beamFileName.endswith('.CSV')):
+        raise ValueError('BeamFileName should end with .csv or .CSV')
+    
+    if not quiet:
+        print(f"Loading particles from file '{beamFileName}'...")
+    
     partArray = np.loadtxt(fname=beamFileName, delimiter=',')
     partArray = partArray.T
+
+    if not quiet:
+        print(f"... Done! Loaded N={partArray.shape[1]} particles.")
+
     return partArray
 
 if __name__ == "__main__":
