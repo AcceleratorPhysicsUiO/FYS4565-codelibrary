@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 beamGeneratorLibrary.py
-    Lorem ipsum...
+    Library for generating beam distributions, and for saving/loading them to .csv (text) files.
+    Created by K. Sjobak.
 """
 
 import numpy as np
@@ -68,7 +69,11 @@ def generateBeam(N:int, Ek0:float,\
     --------
 
     >>> import beamGeneratorLibrary
-    >>> B_gen = beamGeneratorLibrary.generateBeam(10000, 10.0e9, 173.2,0.0,8.58e-08 ,173.2,1.0,8.58e-08, sigmaEk=1e7, sigmaZ=5e-5, rng=np.random.default_rng())
+    >>> B_gen = beamGeneratorLibrary.generateBeam(10000, 10.0e9, \
+                                                  173.2, 0.0, 8.58e-08, \
+                                                  173.2, 1.0, 8.58e-08, \
+                                                  sigmaEk=1e7, sigmaZ=5e-5, \
+                                                  rng=np.random.default_rng())
 
     """
 
@@ -109,9 +114,11 @@ def loadBeamFile_csv(beamFileName):
     return partArray
 
 if __name__ == "__main__":
+
     #Test the code
     B_gen = generateBeam(10000, 10.0e9, 173.2,0.0,8.58e-08 ,173.2,1.0,8.58e-08, sigmaEk=1e7, sigmaZ=5e-5)
     saveBeamFile_csv('testFile.csv',B_gen)
     B_gen_load = loadBeamFile_csv('testFile.csv')
 
+    #Should be all zeros, or almost
     print(B_gen - B_gen_load)
