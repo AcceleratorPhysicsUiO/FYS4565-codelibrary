@@ -59,14 +59,17 @@ def generateBeam(N:int, Ek0:float,\
     rng
         An initialized random number generator "dice" from ``np.random.Generator``.
         Defaults to ``np.random.default_rng(42)``
-
+    quiet
+        If False, some diagnostics output is printed during operation.
+        If True, this is suppressed.
+        Defaults to False
 
     Examples
     --------
 
     >>> import beamGeneratorLibrary
     >>> B_gen = beamGeneratorLibrary.generateBeam(10000, 10.0e9, 173.2,0.0,8.58e-08 ,173.2,1.0,8.58e-08, sigmaEk=1e7, sigmaZ=5e-5, rng=np.random.default_rng())
-
+    
     """
 
     if not quiet:
@@ -95,10 +98,20 @@ def saveBeamFile_csv(beamFileName, partArray):
     Saves the content of a beam array to a CSV file.
     """
     np.savetxt(fname=beamFileName, X=partArray.T, fmt='%25.18e', delimiter=', ', header='x[m], xp[1], y[m], yp[1], dZ[m], Ek[eV]')
-def loadBeamFile_csv(beamFileName):
 
-    pass
+def loadBeamFile_csv(beamFileName):
+    """
+    Loads and returns a beam array from a CSV file
+
+    """
+    partArray = np.loadtxt(fname=beamFileName, delimiter=',')
+    partArray = partArray.T
+    return partArray
 
 if __name__ == "__main__":
-    #Test the example
-    B_gen = beamGeneratorLibrary.generateBeam(10000, 10.0e9, 173.2,0.0,8.58e-08 ,173.2,1.0,8.58e-08, sigmaEk=1e7, sigmaZ=5e-5)
+    #Test the code
+    B_gen = generateBeam(10000, 10.0e9, 173.2,0.0,8.58e-08 ,173.2,1.0,8.58e-08, sigmaEk=1e7, sigmaZ=5e-5)
+    saveBeamFile_csv('testFile.csv',B_gen)
+    B_gen_load = loadBeamFile_csv('testFile.csv')
+
+    print(B_gen - B_gen_load)
