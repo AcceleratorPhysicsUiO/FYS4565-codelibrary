@@ -20,15 +20,15 @@ def generateBeam(N:int, Ek0:float,\
 
     Parameters
     ------------
-    N
+    N : integer
         Number of macro-particles to generate            [1]
-    Ek0
+    Ek0 : float
         Average energy of generated particles [eV]
         This is typically equal to the reference energy of the beam
 
-    betaX, alphaX, epsgX
+    betaX, alphaX, epsgX : float
         TWISS parameters for the horizontal plane        [m,1,m]
-    betaY, alphaY, epsgY
+    betaY, alphaY, epsgY : float
         TWISS parameters for the vertical   plane        [m,1,m]
     
     Returns
@@ -47,19 +47,19 @@ def generateBeam(N:int, Ek0:float,\
     
     Other parameters
     ----------------
-    sigmaEk
+    sigmaEk : float
         Relative kinetic energy                          [eV]
         Defaults to 0.0
-    sigmaZ
+    sigmaZ : float
         Bunch length sigma                               [m]
         Defaults to 0.0
-    x0,xp0,y0,yp0
+    x0,xp0,y0,yp0 : float
         Initial beam position in phase space (x,x',y,y') [m,1,m,1]
         Defaults to 0.0
-    rng
+    rng : Subclass of ``np.random.Generator``
         An initialized random number generator "dice" from ``np.random.Generator``.
         Defaults to ``np.random.default_rng(42)``
-    quiet
+    quiet : Boolean
         If False, some diagnostics output is printed during operation.
         If True, this is suppressed.
         Defaults to False
@@ -69,7 +69,7 @@ def generateBeam(N:int, Ek0:float,\
 
     >>> import beamGeneratorLibrary
     >>> B_gen = beamGeneratorLibrary.generateBeam(10000, 10.0e9, 173.2,0.0,8.58e-08 ,173.2,1.0,8.58e-08, sigmaEk=1e7, sigmaZ=5e-5, rng=np.random.default_rng())
-    
+
     """
 
     if not quiet:
