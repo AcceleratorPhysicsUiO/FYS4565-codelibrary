@@ -60,7 +60,7 @@ def generateBeam(N:int, Ek0:float,\
     rng : Subclass of ``np.random.Generator``
         An initialized random number generator "dice" from ``np.random.Generator``.
         Defaults to ``np.random.default_rng(42)``
-    quiet : Boolean
+    quiet : boolean
         If False, some diagnostics output is printed during operation.
         If True, this is suppressed.
         Defaults to False
@@ -101,6 +101,30 @@ def generateBeam(N:int, Ek0:float,\
 def saveBeamFile_csv(beamFileName, partArray, quiet=False):
     """
     Saves the content of a beam array to a CSV file.
+    
+    Parameters
+    ----------
+    beamFileName : string
+        Filename (ending in .csv or .CSV) to save the array to
+    partArray : np.ndarray
+        6xN array of particles
+
+    Returns
+    -------
+    Nothing is returned from this method
+
+    Other parameters
+    ----------------
+    quiet : boolean
+    If False, some diagnostics output is printed during operation.
+        If True, this is suppressed.
+        Defaults to False
+    
+    Examples
+    --------
+
+    >>> saveBeamFile_csv('testFile.csv',B_gen)
+
     """
     if not (beamFileName.endswith('.csv') or beamFileName.endswith('.CSV')):
         raise ValueError('BeamFileName should end with .csv or .CSV')
@@ -121,6 +145,21 @@ def loadBeamFile_csv(beamFileName, quiet=False):
     """
     Loads and returns a beam array from a CSV file
 
+    Parameters
+    ----------
+    beamFileName : string
+        Filename (ending in .csv or .CSV) to load the array from
+    
+    Returns
+    -------
+    Returns a 6xN matrix of particles in the same way as from the `generateBeam()` method
+
+    Other parameters
+    ----------------
+    quiet : boolean
+    If False, some diagnostics output is printed during operation.
+        If True, this is suppressed.
+        Defaults to False
     """
     if not (beamFileName.endswith('.csv') or beamFileName.endswith('.CSV')):
         raise ValueError('BeamFileName should end with .csv or .CSV')
