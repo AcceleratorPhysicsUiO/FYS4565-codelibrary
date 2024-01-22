@@ -19,6 +19,32 @@ axisTitles   = {'X':'$x$ [mm]', 'XP':"$x'$ [µrad]", 'Y':'$y$ [mm]', 'YP':"$y'$ 
 
 def plotDensity(partArray, xPlot='X', yPlot='XP', bins=100):
     """
+    Plots the beam defined by partArray,
+    as a 2D density plot within a new matplotlib.pyplot figure.
+    
+    Parameters
+    ----------
+    partArray : np.ndarray with 6 rows and N columns.
+        Beam distribution to plot from
+    
+    Returns
+    -------
+    Nothing is returned
+    
+    Other parameters
+    ----------------
+    xPlot, yPlot : string
+        What to plot on the x and y axis of the plot
+        Possibilities are 'X', 'XP', 'Y', 'YP', 'Z', 'EK'
+        Defaults to 'X' and 'XP'
+    bins : integer
+        How many bins to use in the 2D histogram along each axis
+    
+    Example
+    -------
+    
+    >>> import ParticleBeamPlotter
+    >>> ParticleBeamPlotter.plotDensity(B,xPlot='Y',yPlot='YP')
     """
     xIdx = arrayIndexes[xPlot]
     yIdx = arrayIndexes[yPlot]
