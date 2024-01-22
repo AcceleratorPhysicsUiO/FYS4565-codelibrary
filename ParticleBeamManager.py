@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-beamGeneratorLibrary.py
-    Library for generating beam distributions, and for saving/loading them to .csv (text) files.
+ParticleBeamManager.py
+    Library for generating beam distributions by Monte Carlo sampling,
+    and for saving/loading them to .csv (text) files.
+    
+    Version of 23/01/2024
+    
     Created by K. Sjobak.
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 
 def generateBeam(N:int, Ek0:float,\
                  betaX:float,alphaX:float,epsgX:float,\
@@ -70,12 +73,12 @@ def generateBeam(N:int, Ek0:float,\
     A simple example, specifying number of particles, average energy,
     Twiss parameters, and some other extra named parameters::
 
-        import beamGeneratorLibrary
-        B_gen = beamGeneratorLibrary.generateBeam(10000, 10.0e9, \
-                                                  173.2, 0.0, 8.58e-08, \
-                                                  173.2, 1.0, 8.58e-08, \
-                                                  sigmaEk=1e7, sigmaZ=5e-5, \
-                                                  rng=np.random.default_rng())
+        import ParticleBeamManager
+        B_gen = ParticleBeamManager.generateBeam(10000, 10.0e9, \
+                                                 173.2, 0.0, 8.58e-08, \
+                                                 173.2, 1.0, 8.58e-08, \
+                                                 sigmaEk=1e7, sigmaZ=5e-5, \
+                                                 rng=np.random.default_rng())
 
     """
 
@@ -125,7 +128,7 @@ def saveBeamFile_csv(beamFileName, partArray, quiet=False):
     Examples
     --------
 
-    >>> saveBeamFile_csv('testFile.csv',B_gen)
+    >>> ParticleBeamManager.saveBeamFile_csv('testFile.csv',B_gen)
 
     """
     if not (beamFileName.endswith('.csv') or beamFileName.endswith('.CSV')):
@@ -162,6 +165,12 @@ def loadBeamFile_csv(beamFileName, quiet=False):
     If False, some diagnostics output is printed during operation.
         If True, this is suppressed.
         Defaults to False
+        
+    Examples
+    --------
+
+    >>> B_load = ParticleBeamManager.loadBeamFile_csv('testFile.csv')
+
     """
     if not (beamFileName.endswith('.csv') or beamFileName.endswith('.CSV')):
         raise ValueError('BeamFileName should end with .csv or .CSV')
