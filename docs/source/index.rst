@@ -12,6 +12,10 @@ Python modules
 
 .. automodule:: ParticleBeamManager
     :members:
+
+.. automodule:: ParticleBeamPlotter
+    :members:
+
 ..
  .. toctree::
    :maxdepth: 2
