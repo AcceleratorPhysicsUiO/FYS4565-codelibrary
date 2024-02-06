@@ -5,7 +5,7 @@ ParticleBeamManager.py
     Library for generating beam distributions by Monte Carlo sampling,
     and for saving/loading them to .csv (text) files.
     
-    Version of 23/01/2024
+    Version of 06/02/2024
     
     Created by K. Sjobak.
 """
@@ -48,6 +48,7 @@ def generateBeam(N:int, Ek0:float,\
              [E0  , E1  , E2  , ..., EN  ]]
 
         Here the numerical index is the particle index.
+        Units are [m, 1, m, 1, m, eV]
     
     Other parameters
     ----------------
@@ -121,7 +122,7 @@ def saveBeamFile_csv(beamFileName, partArray, quiet=False):
     Other parameters
     ----------------
     quiet : boolean
-    If False, some diagnostics output is printed during operation.
+        If False, some diagnostics output is printed during operation.
         If True, this is suppressed.
         Defaults to False
     
@@ -162,7 +163,7 @@ def loadBeamFile_csv(beamFileName, quiet=False):
     Other parameters
     ----------------
     quiet : boolean
-    If False, some diagnostics output is printed during operation.
+        If False, some diagnostics output is printed during operation.
         If True, this is suppressed.
         Defaults to False
         

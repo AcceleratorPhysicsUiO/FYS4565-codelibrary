@@ -6,18 +6,37 @@
 Introduction
 =============
 This page contains the documentation for the code library that we will use for FYS4565.
+It is organized into Python modules, as described below.
+
+To install the library, copy the python files or `git clone` from https://github.com/AcceleratorPhysicsUiO/FYS4565-codelibrary
+The repository also contains Jupyter notebooks with examples on how to use the modules.
 
 Python modules
----------------
+===============
+
+The Python modules are described below.
+To use them, place them in the folder of your notebook or python script and import it.
+
+ParticleBeamManager
+-------------------
 
 .. automodule:: ParticleBeamManager
     :members:
 
+BeamlineElements
+--------------------
+
+.. automodule:: BeamlineElements
+    :members:
+
+ParticleBeamPlotter
+--------------------
+
 .. automodule:: ParticleBeamPlotter
     :members:
 
-..
- .. toctree::
+
+.. toctree::
    :maxdepth: 2
    :caption: Contents:
 
