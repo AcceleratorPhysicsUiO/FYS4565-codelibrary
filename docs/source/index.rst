@@ -29,10 +29,25 @@ BeamlineElements
 .. automodule:: BeamlineElements
     :members:
 
+BeamLine
+--------
+
+.. automodule:: BeamLine
+.. autoclass:: ElementSequence
+    :members:
+    :special-members:
+    :inherited-members:
+
 ParticleBeamPlotter
 --------------------
 
 .. automodule:: ParticleBeamPlotter
+    :members:
+
+Util
+----
+
+.. automodule:: Util
     :members:
 
 

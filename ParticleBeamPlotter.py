@@ -17,7 +17,7 @@ axisScalings = {'X':1e3, 'XP':1e6, 'Y':1e3, 'YP':1e6, 'Z':1e3, 'EK':1.0}
 axisTitles   = {'X':'$x$ [mm]', 'XP':"$x'$ [µrad]", 'Y':'$y$ [mm]', 'YP':"$y'$ [µrad]", 'Z':"[$z$ m]", 'EK':"$E_k$ [eV]"}
                     
 
-def plotDensity(partArray, xPlot='X', yPlot='XP', bins=100):
+def plotDensity(partArray:np.ndarray, xPlot:str='X', yPlot:str='XP', bins:int=100):
     """
     Plots the beam defined by partArray,
     as a 2D density plot within a new matplotlib.pyplot figure.

@@ -3,13 +3,13 @@
 """
 BeamlineElements.py
     Library for generating matrices
-    and for saving/loading them to .csv (text) files.
+    representing beamline elements such as magnets and drifts.
     
     Coordinate convention is the same as used for `ParticleBeamManager`, i.e.
     {x,x'} in [m,1] for 2D, or
     {x,x',y,y', z,Ek} in [m, 1, m, 1, m, eV] for 6D
 
-    Version of 23/01/2024
+    Version of 06/02/2024
     
     Created by K. Sjobak.
 """

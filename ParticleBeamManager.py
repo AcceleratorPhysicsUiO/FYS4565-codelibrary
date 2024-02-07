@@ -17,7 +17,7 @@ def generateBeam(N:int, Ek0:float,\
                  betaY:float,alphaY:float,epsgY:float,\
                  sigmaEk:float, sigmaZ:float,\
                  x0:float=0.0,xp0:float=0.0, y0=0.0,yp0=0.0,\
-                 rng=np.random.default_rng(42), quiet=False) -> np.ndarray:
+                 rng:np.random.Generator=np.random.default_rng(42), quiet:bool=False) -> np.ndarray:
     """
     Generate macro-particles with the given Twiss parameters [m,1,m] in 4D and momentum spread (RMS of relative to total momentum),
     producing an 6xN array of particle phase-space coordinates
@@ -104,7 +104,7 @@ def generateBeam(N:int, Ek0:float,\
         print("Done!")
     return np.vstack((partX, partY, z, Ek))
 
-def saveBeamFile_csv(beamFileName, partArray, quiet=False):
+def saveBeamFile_csv(beamFileName:str, partArray:np.ndarray, quiet:bool=False):
     """
     Saves the content of a beam array to a CSV file.
     
@@ -147,7 +147,7 @@ def saveBeamFile_csv(beamFileName, partArray, quiet=False):
     if not quiet:
         print('... done!')
 
-def loadBeamFile_csv(beamFileName, quiet=False):
+def loadBeamFile_csv(beamFileName:str, quiet:bool=False):
     """
     Loads and returns a beam array from a CSV file
 
