@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Util.py
-    Library for collecting various useful functions and constants
+    Library for collecting various useful functions and physics constants
     in the Python library for FYS4565 UiO Particle accelerators course.
     
     Version of 23/01/2024
@@ -13,17 +13,43 @@ Util.py
 import numpy as np
 
 #Physics constants:
-SI_e = 1.60217662e-19 #[C]
-SI_c = 299792458      #[m/s]
-
-m0_proton = 938.27e6  #[eV/c^2]
+#: Electron charge [C]
+SI_e = 1.60217662e-19
+#: Speed of light [m/s]
+SI_c = 299792458
+#: Proton mass [eV/c^2]
+m0_proton = 938.27e6
 
 #Pretty-printing function
-def printMatrixAll(M : np.ndarray, rowLabels=True, colLabels=True) -> None:
-    "Pretty printing a numpy 2D matrix M"
+def printMatrixAll(M : np.ndarray, rowLabels : bool = True, colLabels : bool = True) -> None:
+    """
+    Pretty-printing a numpy 2D matrix
+
+    Parameters
+    -----------
+    M : np.ndarray with 2D matrix
+        The matrix to pretty-print
+    Returns
+    -------
+    None : None
+        Nothing is returned
+    
+    Other parameters
+    ----------------
+    rowLabels : bool
+        Should the rows be labeled in the output?
+        Default is True.
+    colLabels: bool
+        Should the cols be labeled in the output?
+        Default is True.
+    """
     print(printMatrixAll_str(M,rowLabels,colLabels))
 
-def printMatrixAll_str(M : np.ndarray, rowLabels=True, colLabels=True) -> str:
+def printMatrixAll_str(M : np.ndarray, rowLabels:bool=True, colLabels:bool=True) -> str:
+    """
+    Same as `prettyPrintMatrixAll()`, but returns a str (with multiple lines) instead of directly printing it.
+    The string is not termiated with a newline.
+    """
     ret = ''
     if colLabels:
         ret += " [i,j] | "
