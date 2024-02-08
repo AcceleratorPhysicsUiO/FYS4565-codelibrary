@@ -22,6 +22,8 @@ class ElementSequence:
         The constructor creates a new ElementSequence containing a list of 2D or 6D element matrices,
         and optionally a list of lengths representing their lengths.
 
+        The elements are ordered as they are seen by the particle, i.e. the element with index 0 is treated first, then element 1, etc.
+
         Parameters
         ----------
         elementMatrices : Python List ([...]) of 2x2 or 6x6 arrays
@@ -148,6 +150,9 @@ class ElementSequence:
         if self.hasElementLengths:
             self.elementLengths.insert(insertAfterIndex, elementLength)
 
+    def concatenate(self, nextSequence : 'ElementSequence'):
+        raise NotImplementedError('TODO')
+
     def getPositions(self):
         """
         Get the s positions after every element, or if no element lengths are used, get a position number (int) starting from 0.
@@ -166,8 +171,34 @@ class ElementSequence:
             ret = np.arange(0,len(self.elementMatrices),1,dtype=int)
             return ret
 
-    def concatenate(self, nextSequence : 'ElementSequence'):
-        raise NotImplementedError('TODO')
+    def getCombinedTransform(self):
+        """
+        Make a combined transformation matrix for the whole sequence
+        by left-multiplying the representing matrices, i.e.
+        `M = m[N] @ m[N-1] @ ... @ m[1] @ ... @ m[0]`
+        where `m[]` is the array of representing matrices and `N=len(m)` is the number of matrices
+
+        Returns
+        --------
+        M : np.ndarray
+            A 2x2 or 6x6 matrix with the combined transformation of the sequence
+        """
+
+        shape = (2,2)
+        if not self.is2D:
+            shape = (6,6)
+        M = np.eye(shape[0])
+
+        if len(self.elementMatrices) == 0:
+            import warnings
+            warnings.warn("Empty sequence, returning identity matrix")
+            return M
+        
+        for ek in self.elementMatrices:
+            M = ek @ M
+        
+        return M
+
 
     def __str__(self):
         """
@@ -232,15 +263,21 @@ if __name__ == '__main__':
     BL.appendElement(MD, 2)
 
     print (BL)
-    print (BL.getPositions())
-
-    BL.appendElement(np.eye(2)*2,0, insertAfterIndex=0)
-    print (BL)
-    BL.appendElement(np.eye(2)*0,0,insertAfterIndex=-1)
-    print (BL)
-
     print()
-    BL2 = ElementSequence([BeamlineElements.MakeElemMatrix6D_Drift(3)],is2D=False)
-    
-    print (BL2)
     print (BL.getPositions())
+    
+    print()
+    M = BL.getCombinedTransform()
+    print (M)
+    print (np.linalg.det(M))
+
+    #BL.appendElement(np.eye(2)*2,0, insertAfterIndex=0)
+    #print (BL)
+    #BL.appendElement(np.eye(2)*0,0,insertAfterIndex=-1)
+    #print (BL)
+
+    #print()
+    #BL2 = ElementSequence([BeamlineElements.MakeElemMatrix6D_Drift(3)],is2D=False)
+    
+    #print (BL2)
+    #print (BL.getPositions())
