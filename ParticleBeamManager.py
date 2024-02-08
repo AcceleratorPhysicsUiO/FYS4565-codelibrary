@@ -5,7 +5,7 @@ ParticleBeamManager.py
     Library for generating beam distributions by Monte Carlo sampling,
     and for saving/loading them to .csv (text) files.
     
-    Version of 23/01/2024
+    Version of 06/02/2024
     
     Created by K. Sjobak.
 """
@@ -17,7 +17,7 @@ def generateBeam(N:int, Ek0:float,\
                  betaY:float,alphaY:float,epsgY:float,\
                  sigmaEk:float, sigmaZ:float,\
                  x0:float=0.0,xp0:float=0.0, y0=0.0,yp0=0.0,\
-                 rng=np.random.default_rng(42), quiet=False) -> np.ndarray:
+                 rng:np.random.Generator=np.random.default_rng(42), quiet:bool=False) -> np.ndarray:
     """
     Generate macro-particles with the given Twiss parameters [m,1,m] in 4D and momentum spread (RMS of relative to total momentum),
     producing an 6xN array of particle phase-space coordinates
@@ -48,6 +48,7 @@ def generateBeam(N:int, Ek0:float,\
              [E0  , E1  , E2  , ..., EN  ]]
 
         Here the numerical index is the particle index.
+        Units are [m, 1, m, 1, m, eV]
     
     Other parameters
     ----------------
@@ -103,7 +104,7 @@ def generateBeam(N:int, Ek0:float,\
         print("Done!")
     return np.vstack((partX, partY, z, Ek))
 
-def saveBeamFile_csv(beamFileName, partArray, quiet=False):
+def saveBeamFile_csv(beamFileName:str, partArray:np.ndarray, quiet:bool=False):
     """
     Saves the content of a beam array to a CSV file.
     
@@ -121,7 +122,7 @@ def saveBeamFile_csv(beamFileName, partArray, quiet=False):
     Other parameters
     ----------------
     quiet : boolean
-    If False, some diagnostics output is printed during operation.
+        If False, some diagnostics output is printed during operation.
         If True, this is suppressed.
         Defaults to False
     
@@ -146,7 +147,7 @@ def saveBeamFile_csv(beamFileName, partArray, quiet=False):
     if not quiet:
         print('... done!')
 
-def loadBeamFile_csv(beamFileName, quiet=False):
+def loadBeamFile_csv(beamFileName:str, quiet:bool=False):
     """
     Loads and returns a beam array from a CSV file
 
@@ -162,7 +163,7 @@ def loadBeamFile_csv(beamFileName, quiet=False):
     Other parameters
     ----------------
     quiet : boolean
-    If False, some diagnostics output is printed during operation.
+        If False, some diagnostics output is printed during operation.
         If True, this is suppressed.
         Defaults to False
         
