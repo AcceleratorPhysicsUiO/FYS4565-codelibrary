@@ -10,11 +10,13 @@ import FYS4565_codelibrary.BeamlineElements
 
 #Import functions from the library
 
-#Task 1.1
+### Task 1.1 ###
+
 driftMatrix2D     = FYS4565_codelibrary.BeamlineElements.MakeElemMatrix2D_Drift
 quadMatrix2D_thin = FYS4565_codelibrary.BeamlineElements.MakeElemMatrix2D_QuadThin
 
-#Task 2.2
+### Task 1.2 ###
+
 def driftList2D(L,ds):
     N_approx = L/ds
     N = int(np.ceil(N_approx))
@@ -143,3 +145,53 @@ def plotTwissFunctions(B0, Mlist, dsList, xy=None, marker=True):
     ax2.tick_params(axis='y',color='red')
     
     return(ax1,ax2)
+
+### Task 1.3 ###
+
+def matchingSectionList2D_thin(f1,f2,fFODO=38.0, dS=None):
+    Mlist = []
+    dslist = []
+
+    L1 = 50.0           #[m] To first quad
+    L2 = 75.0-L1        #[m] To second quad
+    L3 = 95-(L2+L1)     #[m] To diagnostics screen
+    L4 = 100-(L3+L2+L1) #[m] To end
+
+    if dS == None:
+        dS1 = L1
+    else:
+        dS1 = dS
+    (Mdrifts,sdrifts) = driftList2D(L1,dS1)
+    Mlist += Mdrifts
+    dslist += sdrifts
+
+    Mlist.append(quadMatrix2D_thin(f1))
+    dslist.append(0.0)
+    
+    if dS == None:
+        dS2 = L2
+    else:
+        dS2 = dS
+    (Mdrifts,sdrifts) = driftList2D(L2,dS2)
+    Mlist += Mdrifts
+    dslist += sdrifts
+
+    Mlist.append(quadMatrix2D_thin(-f2))
+    dslist.append(0.0)
+
+    if dS == None:
+        dS = L3
+    (Mdrifts,sdrifts) = driftList2D(L3,dS)
+    Mlist += Mdrifts
+    dslist += sdrifts
+
+    if dS == None:
+        dS = L3
+    (Mdrifts,sdrifts) = driftList2D(L4,dS)
+    Mlist += Mdrifts
+    dslist += sdrifts
+
+    Mlist.append(quadMatrix2D_thin(fFODO*2))
+    dslist.append(0.0)
+
+    return (Mlist, dslist)

@@ -20,6 +20,7 @@ def MakeElemMatrix2D_QuadThin(f:float) -> np.ndarray:
     """
     Creates a 2x2 matrix representing a quadrupole magnet in the "thin lens" approximation
     in a single plane, given the focal length.
+    As a special case for f=0, return an 2x2 identity matrix.
 
     Parameters
     -----------
@@ -38,6 +39,9 @@ def MakeElemMatrix2D_QuadThin(f:float) -> np.ndarray:
     >>> M = BeamlineElements.MakeElemMatrix2D_QuadThin(1.0)
 
     """
+
+    if f == 0:
+        return np.eye(2)
 
     return np.asarray([ [ 1.0  , 0.0],\
                         [-1.0/f, 1.0] ])
