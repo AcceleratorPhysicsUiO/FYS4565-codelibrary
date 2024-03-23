@@ -19,6 +19,8 @@ SI_e = 1.60217662e-19
 SI_c = 299792458
 #: Proton mass [eV/c^2]
 m0_proton = 938.27e6
+#: Electron mass [eV/c^2]
+m0_electron = 510.998950000e3
 
 #Pretty-printing function
 def printMatrixAll(M : np.ndarray, rowLabels : bool = True, colLabels : bool = True) -> None:
