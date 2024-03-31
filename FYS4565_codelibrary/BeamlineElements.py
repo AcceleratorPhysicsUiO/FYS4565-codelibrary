@@ -35,7 +35,7 @@ def MakeElemMatrix2D_QuadThin(f:float) -> np.ndarray:
     Examples
     ---------
     
-    >>> import BeamlineElements
+    >>> from FYS4565_codelibrary import BeamlineElements
     >>> M = BeamlineElements.MakeElemMatrix2D_QuadThin(1.0)
 
     """
@@ -63,7 +63,7 @@ def MakeElemMatrix2D_Drift(L:float) -> np.ndarray:
     Examples
     ---------
     
-    >>> import BeamlineElements
+    >>> from FYS4565_codelibrary import BeamlineElements
     >>> M = BeamlineElements.MakeElemMatrix2D_Drift(2.0)
 
     """
@@ -88,7 +88,7 @@ def MakeElemMatrix6D_Drift(L:float) -> np.ndarray:
     Examples
     ---------
     
-    >>> import BeamlineElements
+    >>> from FYS4565_codelibrary import BeamlineElements
     >>> M = BeamlineElements.MakeElemMatrix6D_Drift(2.0)
 
     """
@@ -109,15 +109,15 @@ if __name__ == "__main__":
     L = 2.0
     f = 1.0
 
-    import Util
+    from FYS4565_codelibrary import Util
 
     M1 = MakeElemMatrix2D_QuadThin(f)
     Util.printMatrixAll(M1)
     print()
 
     M2 = MakeElemMatrix2D_Drift(L)
-    Util.printMatrixAll(M2)
+    FYS4565_codelibrary.Util.printMatrixAll(M2)
     print()
 
     M3 = MakeElemMatrix6D_Drift(L)
-    Util.printMatrixAll(M3)
+    FYS4565_codelibrary.Util.printMatrixAll(M3)

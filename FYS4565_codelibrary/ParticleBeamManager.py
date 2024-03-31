@@ -74,7 +74,7 @@ def generateBeam(N:int, Ek0:float,\
     A simple example, specifying number of particles, average energy,
     Twiss parameters, and some other extra named parameters::
 
-        import ParticleBeamManager
+        from FYS4565_codelibrary import ParticleBeamManager
         B_gen = ParticleBeamManager.generateBeam(10000, 10.0e9, \
                                                  173.2, 0.0, 8.58e-08, \
                                                  173.2, 1.0, 8.58e-08, \

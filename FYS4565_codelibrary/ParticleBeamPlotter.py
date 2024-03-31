@@ -55,7 +55,7 @@ def plotDensity(partArray:np.ndarray, xPlot:str='X', yPlot:str='XP', bins:int=10
     Example
     -------
 
-    >>> import ParticleBeamPlotter
+    >>> from FYS4565_codelibrary import ParticleBeamPlotter
     >>> ParticleBeamPlotter.plotDensity(B,xPlot='Y',yPlot='YP')
     """
     xIdx = arrayIndexes[xPlot]

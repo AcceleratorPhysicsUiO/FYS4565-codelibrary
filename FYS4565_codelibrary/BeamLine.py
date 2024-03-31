@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-BeamlineSequence.py
+BeamLine.py
     Library for organizing beamline elements into sequences.
     
-    Version of 06/02/2024
+    Version of 31/03/2024
     
     Created by K. Sjobak.
 """
 
 import numpy as np
-import Util
+import FYS4565_codelibrary.Util
 
 class ElementSequence:
     """
@@ -50,7 +50,7 @@ class ElementSequence:
         Example
         -------
     
-        >>> import BeamLine
+        >>> from FYS4565_codelibrary import BeamLine
         >>> BL = BeamLine.ElementSequence([],[])
 
         """
@@ -116,7 +116,7 @@ class ElementSequence:
         Example
         -------
 
-        >>> import BeamLine
+        >>> from FYS4565_codelibrary import BeamLine
         >>> BL = BeamLine.ElementSequence()
         >>> BL.appendElement(np.eye(2))                      #Appends to end of sequence
         >>> BL.appendElement(np.eye(2), insertAfterIndex=0)  #Inserts to beginning of sequence
@@ -212,7 +212,7 @@ class ElementSequence:
         Example
         --------
 
-        >>> import BeamLine
+        >>> from FYS4565_codelibrary import BeamLine
         >>> BL = BeamLine.ElementSequence([],[])
         >>> BL.appendElement(np.eye(2),0)
         >>> print(BL)
@@ -234,7 +234,7 @@ class ElementSequence:
             ret += f' Elem #{i}/{len(self.elementMatrices)}:\n'
             if self.hasElementLengths:
                 ret += f' L = {self.elementLengths[i]}\n'
-            ret += Util.printMatrixAll_str(self.elementMatrices[i], False,False)
+            ret += FYS4565_codelibrary.Util.printMatrixAll_str(self.elementMatrices[i], False,False)
             if i < len(self.elementMatrices)-1:
                 ret += '\n'
         if len(self.elementMatrices) == 0:
@@ -247,7 +247,7 @@ if __name__ == '__main__':
     BL = ElementSequence([],[])
     print(BL)
 
-    import BeamlineElements
+    from FYS4565_codelibrary import BeamlineElements
 
     MD = BeamlineElements.MakeElemMatrix2D_Drift(2.0)
     MQf = BeamlineElements.MakeElemMatrix2D_QuadThin(2)
