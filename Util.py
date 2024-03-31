@@ -5,7 +5,7 @@ Util.py
     Library for collecting various useful functions and physics constants
     in the Python library for FYS4565 UiO Particle accelerators course.
     
-    Version of 23/01/2024
+    Version of 31/03/2024
     
     Created by K. Sjobak.
 """

@@ -9,7 +9,7 @@ BeamlineElements.py
     {x,x'} in [m,1] for 2D, or
     {x,x',y,y', z,Ek} in [m, 1, m, 1, m, eV] for 6D
 
-    Version of 06/02/2024
+    Version of 31/03/2024
     
     Created by K. Sjobak.
 """

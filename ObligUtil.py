@@ -1,4 +1,14 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+ObligUtil.py
+    Library for collecting various useful functions and physics constants
+    for the 2024 project in FYS4565 UiO / Particle accelerators course.
+    
+    Version of 31/03/2024
+    
+    Created by K. Sjobak.
+"""
 
 import numpy as np
 import matplotlib.pyplot as plt
