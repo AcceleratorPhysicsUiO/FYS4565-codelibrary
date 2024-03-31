@@ -5,7 +5,7 @@ Util.py
     Library for collecting various useful functions and physics constants
     in the Python library for FYS4565 UiO Particle accelerators course.
     
-    Version of 23/01/2024
+    Version of 31/03/2024
     
     Created by K. Sjobak.
 """
@@ -19,6 +19,8 @@ SI_e = 1.60217662e-19
 SI_c = 299792458
 #: Proton mass [eV/c^2]
 m0_proton = 938.27e6
+#: Electron mass [eV/c^2]
+m0_electron = 510.998950000e3
 
 #Pretty-printing function
 def printMatrixAll(M : np.ndarray, rowLabels : bool = True, colLabels : bool = True) -> None:
