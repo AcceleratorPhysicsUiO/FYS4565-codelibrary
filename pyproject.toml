@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "FYS4565_codelibrary"
+version = "2024.03.31"
+dependencies = [
+   "numpy",
+   "matplotlib"
+]
+requires-python = ">= 3"
+
+authors = [
+  {name = "Kyrre Sjobak", email = "k.n.sjobak@fys.uio.no"},
+]
+readme = "README.md"
