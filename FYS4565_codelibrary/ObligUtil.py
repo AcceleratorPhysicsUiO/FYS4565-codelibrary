@@ -14,14 +14,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #Import packages from the FYS4565 code library
-# Note: the code library must be in a subfolder of this folder, OR in $PYTHONPATH
-import FYS4565_codelibrary.Util
+# Note: the code library must be in a subfolder of this folder, OR in $PYTHONPATH (e.g. installed with pip)
+#import FYS4565_codelibrary.Util
 import FYS4565_codelibrary.BeamlineElements
-
-#Import functions from the library
 
 ### Task 1.1 ###
 
+#Import functions from the library
 driftMatrix2D     = FYS4565_codelibrary.BeamlineElements.MakeElemMatrix2D_Drift
 quadMatrix2D_thin = FYS4565_codelibrary.BeamlineElements.MakeElemMatrix2D_QuadThin
 
