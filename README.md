@@ -12,7 +12,7 @@ pip install --user git+https://github.com/AcceleratorPhysicsUiO/FYS4565_codelibr
 ```
 You can later remove (or remove before re-installing in order to get a newer version) by
 ```
-pip remove FYS4565_codelibrary
+pip uninstall FYS4565_codelibrary
 ```
 
 Alternatively, you can copy the `FYS4565_codelibrary` sub-folder from this repository into your project (the folder with content, not just the contents).
@@ -22,7 +22,7 @@ After installing, you can use the library by importing its modules, i.e.
 
 ## Sphinx code documentation
 
-For documentation of the modules and their functions/classes, please see: https://acceleratorphysicsuio.github.io/FYS4565-codelibrary/
+For documentation of the modules and their functions/classes, please see: https://acceleratorphysicsuio.github.io/FYS4565_codelibrary/
 
 ### Manually generating code documentation
 
